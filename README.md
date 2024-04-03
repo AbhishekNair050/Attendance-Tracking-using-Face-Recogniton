@@ -10,7 +10,7 @@ The project consists of the following files:
 
 2. **ml.py**: This file handles the machine learning aspect of the project. It extracts facial landmarks from the preprocessed images, processes the landmark data, and trains the Random Forest model for attendance tracking.
 
-3. **train.py**: This file is responsible for training the machine learning model using the processed facial landmark data.
+3. **train.py**: This file contains necessary functions for image capture.
 
 4. **landmarks.py**: This file contains functions to extract facial landmarks from images using the MediaPipe library.
 
@@ -33,11 +33,9 @@ The `Dataset` directory is used to store the captured images of students or indi
 
 2. **Image Preprocessing and Landmark Extraction**:
    - Run `sip.py` to preprocess the captured images and prepare them for landmark extraction.
-   - Run `landmarks.py` to extract facial landmarks from the preprocessed images.
 
 3. **Model Training**:
-   - Run `ml.py` to process the extracted facial landmark data and train the Random Forest model.
-   - Alternatively, run `train.py` to train the model using the processed landmark data.
+   - Run `ml.py` to extract and process the facial landmark data and train the Random Forest model.
 
 4. **Cross-Validation**:
    - Run `cross_val.py` to perform cross-validation on the trained model and evaluate its performance.
