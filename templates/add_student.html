@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance List</title>
+    <link rel="stylesheet" href="static/add_student.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+        <div class="banner">
+            <nav>
+                <ul>
+                    <li><a href="home">Home</a></li>
+                    <li><a href="report">Report</a></li>
+                    <li><a href="student">Student</a></li>
+                </ul>
+            </nav>
+            <div class="title">
+                <h1>Attendance List</h1>
+            </div>
+        </div>
+        <div id="captureContainer">
+            <video id="video" autoplay></video>
+            <div id="captureButtons">
+                <button id="startCapture">Start Capture</button>
+                <button id="stopCapture">Stop Capture</button>
+            </div>
+        </div>
+        <div class="circle"></div>
+        <div class="footer"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        const labelElement = document.getElementById('label');
+        const certaintyElement = document.getElementById('certainty');
+        const videoElement = document.getElementById('video');
+        const startButton = document.getElementById('startCapture');
+        const stopButton = document.getElementById('stopCapture');
+        const frameCountElement = document.getElementById('frameCount');
+        
+        let streaming = false;
+        let videoStream;
+        let frameCount = 0;
+        let captureInterval;
+        
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                videoElement.srcObject = stream;
+                videoStream = stream;
+                videoElement.addEventListener('canplay', () => {
+                    if (!streaming) {
+                        streaming = true;
+                        startButton.disabled = false;
+                    }
+                });
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+                labelElement.innerText = 'Error accessing camera';
+                certaintyElement.innerText = '';
+            }
+        }
+        startButton.addEventListener('click', () => {
+            const name = prompt('Enter your name:');
+            if (name) {
+                startButton.disabled = true;
+                stopButton.disabled = false;
+                captureInterval = setInterval(sendFrame, 100); // Set the interval based on your needs
+            }
+        });
+    
+        stopButton.addEventListener('click', () => {
+            stopStream();
+        });
+    
+        async function sendFrame() {
+            if (frameCount >= 100) {
+                stopStream();
+                return;
+            }
+    
+            const canvas = document.createElement('canvas');
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+    
+            canvas.toBlob(blob => {
+                const formData = new FormData();
+                formData.append('frame', blob, 'frame.jpg');
+    
+                fetch('/capture', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'name': name // Set the name in headers
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    labelElement.innerText = `Label: ${data.label}`;
+                    certaintyElement.innerText = `Certainty: ${data.certainty}%`;
+                    frameCount++;
+                    frameCountElement.innerText = `Frame Count: ${frameCount}`;
+                })
+                .catch(error => console.error('Error processing frame:', error));
+            }, 'image/jpeg');
+        }
+    
+        function stopStream() {
+            clearInterval(captureInterval);
+            videoStream.getTracks().forEach(track => track.stop());
+            streaming = false;
+            frameCount = 0;
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            frameCountElement.innerText = '';
+        }
+    
+        startCamera();
+    </script>
+</body>
+</html>

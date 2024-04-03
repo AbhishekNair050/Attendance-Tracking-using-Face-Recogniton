@@ -1,0 +1,223 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: white;
+}
+
+.header {
+    width: 100%;
+    height: 23%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background: white;
+}
+
+.banner {
+    width: 100%;
+    height: 15%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background: #E0F7FA;
+}
+
+.circle {
+    width: 60px;
+    height: 60px;
+    left: 73px;
+    top: 26px;
+    position: absolute;
+    background: #342E37;
+    border-radius: 9999px;
+}
+
+.card {
+    width: 238px;
+    height: 54px;
+    left: 231px;
+    top: 386px;
+    position: absolute;
+}
+
+.blur {
+    width: 236px;
+    height: 52px;
+    left: 2px;
+    top: 2px;
+    position: absolute;
+    background: #342E37;
+    box-shadow: 8px 8px 8px;
+    border-radius: 10px;
+    filter: blur(8px);
+}
+
+.content {
+    width: 96%;
+    height: 70%;
+    left: 2%;
+    top: 30%;
+    position: absolute;
+    background: #342E37;
+    border-radius: 10px;
+}
+
+.name {
+    width: 138.02px;
+    height: 43px;
+    left: 49.19px;
+    top: 4px;
+    position: absolute;
+    text-align: center;
+    color: #FFFBFA;
+    font-size: 18px;
+    font-family: Roboto;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.position {
+    width: 39.19px;
+    height: 43px;
+    left: 10px;
+    top: 4px;
+    position: absolute;
+    text-align: center;
+    color: #FFFBFA;
+    font-size: 18px;
+    font-family: Roboto;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.marker {
+    width: 12px;
+    height: 12px;
+    left: 214px;
+    top: 19px;
+    position: absolute;
+    background: #D9D9D9;
+    border: 1px black solid;
+}
+
+.footer {
+    width: 100%;
+    height: 100px; /* Adjust height as needed */
+    position: absolute;
+    bottom: 0;
+    background: #a9bdc0; /* Example color */
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    margin-top: 3%;
+    margin-left: 30%;
+}
+
+nav ul li {
+    margin-right: 20%;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    font-weight: 500;
+}
+.title
+{
+    font-size: 22px;
+    font-weight: 500;
+    color: #342E37;
+    margin-left: 42%;
+    margin-top: 2.5%;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+    color: #f2f2f2;
+}
+
+/* Table header */
+th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 12px;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Table rows */
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Table data */
+td {
+    text-align: left;
+    padding: 12px;
+}
+/* Hover effect */
+tr:hover {
+    background-color: #ddd;
+}
+.rectangle1
+{
+    width: 27%;
+    height: 47%;
+    position: absolute;
+    background: #342E37;
+    margin-left: 70%;
+    margin-top: 15%;
+}
+.header input[type="text"] {
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 11%;
+    margin-left: 42%;
+}
+
+/* Add student button */
+.header button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style for student list */
+.student-list {
+    margin-top: 20px;
+}
+
+/* Style for each student item */
+.student-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style for student name */
+.student-name {
+    font-weight: bold;
+}
+
+/* Style for student email */
+.student-email {
+    color: #666;
+}

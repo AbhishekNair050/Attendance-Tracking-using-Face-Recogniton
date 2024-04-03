@@ -1,0 +1,233 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: white;
+}
+
+.header {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background: white;
+}
+
+.banner {
+    width: 100%;
+    height: 15%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background: #E0F7FA;
+}
+
+.circle {
+    width: 60px;
+    height: 60px;
+    left: 73px;
+    top: 26px;
+    position: absolute;
+    background: #897D77;
+    border-radius: 9999px;
+}
+
+.card {
+    width: 238px;
+    height: 54px;
+    left: 231px;
+    top: 386px;
+    position: absolute;
+}
+
+.blur {
+    width: 236px;
+    height: 52px;
+    left: 2px;
+    top: 2px;
+    position: absolute;
+    background: #342E37;
+    box-shadow: 8px 8px 8px;
+    border-radius: 10px;
+    filter: blur(8px);
+}
+
+.content {
+    width: 236px;
+    height: 52px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background: #342E37;
+    border-radius: 10px;
+}
+
+.name {
+    width: 138.02px;
+    height: 43px;
+    left: 49.19px;
+    top: 4px;
+    position: absolute;
+    text-align: center;
+    color: #FFFBFA;
+    font-size: 18px;
+    font-family: Roboto;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.position {
+    width: 39.19px;
+    height: 43px;
+    left: 10px;
+    top: 4px;
+    position: absolute;
+    text-align: center;
+    color: #FFFBFA;
+    font-size: 18px;
+    font-family: Roboto;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.marker {
+    width: 12px;
+    height: 12px;
+    left: 214px;
+    top: 19px;
+    position: absolute;
+    background: #D9D9D9;
+    border: 1px black solid;
+}
+
+.footer {
+    width: 100%;
+    height: 100px; /* Adjust height as needed */
+    position: absolute;
+    bottom: 0;
+    background: #a9bdc0; /* Example color */ /* Example color */
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    margin-top: 3%;
+    margin-left: 30%;
+}
+
+nav ul li {
+    margin-right: 20%;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    font-weight: 500;
+}
+.title
+{
+    font-size: 22px;
+    font-weight: 500;
+    color: #342E37;
+    margin-left: 42%;
+    margin-top: 2.5%;
+}
+/* Add your existing CSS styles here */
+
+/* Dropdown button */
+/* Dropdown Button */
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 225%;
+    margin-left: 1400%;
+  }
+  
+  /* Dropdown button on hover & focus */
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-left: 1375%; 
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {display:block;}
+
+  .rectangle1
+{
+    width: 50%;
+    height: 47%;
+    position: absolute;
+    background: #342E37;
+    margin-left: 47%; 
+    margin-top: 16%;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+    color: #f2f2f2;
+}
+
+/* Table header */
+th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 12px;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Table rows */
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Table data */
+td {
+    text-align: left;
+    padding: 12px;
+}
+/* Hover effect */
+tr:hover {
+    background-color: #ddd;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In Form</title>
+    <link rel="stylesheet" href="static/login.css">
+</head>
+<body>
+
+<div class="login-container">
+    <form class="login-form" id="loginForm" method="POST" action="/">
+        <label for="email">Email or phone number</label>
+        <input type="text" id="email" name="email" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <div class="remember-me">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Remember me</label>
+        </div>
+        <button type="submit" onclick="submitForm()">Sign In</button>
+
+        <div class="form-footer">
+            <a href="#">Need help?</a>
+            <a href="/signup">Sign up</a>
+        </div>
+    </form>
+</div>
+<script>
+    function submitForm() {
+        const form = document.getElementById('loginForm');
+        const formData = new FormData(form);
+        
+        fetch('/', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            // Handle response as needed
+            console.log(response);
+        })
+        .catch(error => console.error('Error:', error));
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="static/student.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchTable()">
+            <button onclick="addStudent()">Add Student</button>
+        </div>
+        <div class="banner">
+            <nav>
+                <ul>
+                    <li><a href="home">Home</a></li>
+                    <li><a href="report">Report</a></li>
+                    <li><a href="student">Student</a></li>
+                </ul>
+            </nav>
+            <div class="title">
+                <h1>Student Dashboard</h1>
+            </div>
+        </div>
+        <div class="circle"></div>
+        <div class="content">
+            <table class="table" id="studentTable">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Email</th>
+                        <th>Roll No</th>
+                        <th>Course</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        <div class="footer"></div>
+    </div>
+    <script>
+        function addStudent() {
+            window.location.href = "add_student";
+        }
+
+        function searchTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("studentTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td");
+                for (var j = 0; j < td.length; j++) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

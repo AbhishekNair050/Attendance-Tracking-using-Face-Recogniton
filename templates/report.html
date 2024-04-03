@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report</title>
+    <link rel="stylesheet" href="static/report.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+        </div>
+        <div class="banner">
+            <nav>
+                <ul>
+                    <li><a href="home">Home</a></li>
+                    <li><a href="report">Report</a></li>
+                    <li><a href="student">Student</a></li>
+                </ul>
+            </nav>
+            <div class="title">
+                <h1>Student Report</h1>
+            </div>
+        </div>
+        <div class="circle"></div>
+        <div class="content">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                        <th>Total %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>

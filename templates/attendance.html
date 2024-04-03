@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance List</title>
+    <link rel="stylesheet" href="static/attendance.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="rectangle1">
+                <table class="table" id="attendanceTable">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Subject</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Attendance rows will be dynamically added here -->
+                    </tbody>
+                  </table>
+            </div>
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Subject</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <a href="#" onclick="selectSubject('ML')">ML</a>
+                    <a href="#" onclick="selectSubject('SIP')">SIP</a>
+                    <a href="#" onclick="selectSubject('DBMS')">DBMS</a>
+                    <a href="#" onclick="selectSubject('OT')">OT</a>
+                    <a href="#" onclick="selectSubject('IT')">IT</a>
+                </div>
+            </div>
+        </div>
+        <div class="banner">
+            <nav>
+                <ul>
+                    <li><a href="home">Home</a></li>
+                    <li><a href="report">Report</a></li>
+                    <li><a href="student">Student</a></li>
+                </ul>
+            </nav>
+            <div class="title">
+                <h1>Attendance List</h1>
+            </div>
+            <img src="" id="video" alt="Video Feed">
+        </div>
+        <div class="circle"></div>
+        <div class="footer"></div>
+    </div>
+    <script>
+        function myFunction() {
+            document.getElementById("dropdownContent").classList.toggle("show");
+        }
+
+        function selectSubject(subject) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/video_feed", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById("video").src = "data:image/jpeg;base64," + xhr.responseText;
+                }
+            };
+            xhr.send(JSON.stringify({ subject: subject }));
+            document.getElementById("dropdownContent").classList.remove("show");
+        }
+
+        function updateAttendance() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/attendance_data", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    var tableBody = document.getElementById("attendanceTable").getElementsByTagName("tbody")[0];
+                    tableBody.innerHTML = ""; // Clear existing rows
+                    data.forEach(function(row) {
+                        var newRow = tableBody.insertRow();
+                        row.forEach(function(cellData) {
+                            var cell = newRow.insertCell();
+                            cell.appendChild(document.createTextNode(cellData));
+                        });
+                    });
+                }
+            };
+            xhr.send();
+        }
+
+        // Update attendance every 5 seconds
+        setInterval(updateAttendance, 5000);
+        function updateVideoFeed() {
+        var img = document.getElementById('video');
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/video_feed', true);
+        xhr.responseType = 'blob'; // Set response type to Blob
+        xhr.onload = function() {
+            if (this.status === 200) {
+                var blob = this.response;
+                var imgUrl = URL.createObjectURL(blob); // Create object URL for the blob
+                img.src = imgUrl; // Set the src attribute of the img tag
+            }
+        };
+        xhr.send();
+    }
+
+    // Update the video feed every 5 seconds
+    setInterval(updateVideoFeed, 5000);
+    </script>
+</body>
+</html>

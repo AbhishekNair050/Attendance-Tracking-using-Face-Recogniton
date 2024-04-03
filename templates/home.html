@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-vml.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.anychart.com/releases/v8/fonts/css/anychart.min.css"
+    />
+    <title>Attendance List</title>
+    <link rel="stylesheet" href="static/home.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="rectangle1" id="container1"></div>
+      <button class="button" onclick="attendance()">Take Attendance</button>
+      <div class="header"></div>
+      <div class="banner">
+        <nav>
+          <ul>
+            <li><a href="home">Home</a></li>
+            <li><a href="report">Report</a></li>
+            <li><a href="student">Student</a></li>
+          </ul>
+        </nav>
+        <div class="title">
+          <h1>Attendance List</h1>
+        </div>
+      </div>
+      <div class="circle"></div>
+      <div class="content" , style="overflow-x: scroll">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in attendance_data %}
+            <tr>
+              <td>{{ row[0] }}</td>
+              <td>{{ row[1] }}</td>
+              <td>{{ row[2] }}</td>
+              <td>{{ row[3] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="footer"></div>
+    </div>
+  </body>
+  <script>
+    anychart.onDocumentReady(function() {
+        var data = {{occupied_datas|safe }};
+        var chart3 = anychart.pie(data);
+        title= chart3.title("Attendance List");
+        chart3.innerRadius("70%");
+        chart3.container("container1");
+        chart3.background().enabled(true); // Enable background
+        chart3.palette(["white","#d90166"]);
+        chart3.background().fill("transparent"); // Set background fill color to transparent
+        chart3.draw();
+    });
+      function attendance() {
+          window.location.href = "attendance";
+      }
+  </script>
+</html>
